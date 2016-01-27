@@ -64,8 +64,12 @@ public class Communication {
 	 * @return
 	 * @throws IOException
 	 */
-	public String receive() throws IOException{
-		return this.ret.readLine();
-		
+	public String receive(){
+		try {
+			return this.ret.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "Error";
 	}
 }

@@ -6,13 +6,13 @@ import java.net.InetAddress;
 import java.net.URLEncoder;
 import java.net.UnknownHostException;
 
+import launch.CONFIG;
+
 public class HttpRequest {
 
 	public static final int portServerPhp = 80;
 
 	private Communication communication;
-	private String path = "/Projet-socket";
-	private String hostName = "hina/~picharles/";
 
 	/**
 	 * Constructor to HttpRequest
@@ -22,35 +22,53 @@ public class HttpRequest {
 	public HttpRequest(Communication communication) {
 		this.communication = communication;
 		try {
-			communication.initSocket(InetAddress.getByName(hostName), portServerPhp);
+			communication.initSocket(InetAddress.getByName(CONFIG.hostName), portServerPhp);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
 	}
 
+	
 	/**
 	 * Methode to send a POST request
 	 * @param action : the action ("nbc" -> number of caractère, "val" -> value of text)
 	 * @param text : the text to send
 	 */
-	public void postRequest(String action, String text) {
+	public String postRequest(String action, String text) {
+		String line="";
+		String result ="";
 		String param = prepareParameters(action, text);
-		communication.send("POST " + path + " HTTP/1.0\r\n");
-		communication.send("Content-Length: " + param.length() + "\r\n");
-		communication.send("Content-Type: application/x-www-form-urlencoded\r\n");
-		communication.send("\r\n");
-		communication.send(param);
+		String postRequest = "POST " +CONFIG.path + " HTTP/1.1\r\n";
+		postRequest+="Host: "+CONFIG.hostName+"\r\n";
+		postRequest+="Content-Type: application/x-www-form-urlencoded\r\n";
+		postRequest+="Content-Length: "+ param.length() + "\r\n\r\n";
+		postRequest+=param;	
+		communication.send(postRequest);
+		while((line=communication.receive())!= null){
+		    result=line; // get the last string to request response
+		}
+		return result;
 	}
-
+	
 	/**
 	 * Methode to send a GET request
 	 * @param action : the action ("nbc" -> number of caractère, "val" -> value of text)
 	 * @param text : the text to send
 	 */
-	public void getRequest(String action, String text) {
-		communication.send("GET " + prepareParameters(action, text));
-		communication.send("Host: \r\n\r\n");
+	public String getRequest(String action, String text) {
+		String line="";
+		String result="";
+		String param = prepareParameters(action, text);
+		String getRequest = "GET "+CONFIG.path+"?"+ param+" HTTP/1.1\r\n";
+		getRequest+="Host: "+CONFIG.hostName+" \r\n\r\n";
+
+		communication.send(getRequest);
+		while((line=communication.receive())!= null){  
+			result=line; // get the last string to request response
+		}
+		return result;
 	}
+	
 	
 	/**
 	 * Methode to encode parameters in UTF-8 
@@ -68,6 +86,7 @@ public class HttpRequest {
 		}
 		return params;
 	}
+	
 	
 	/***
 	 * Methode to close communication with PHP server

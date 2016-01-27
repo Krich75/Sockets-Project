@@ -9,6 +9,10 @@ public class UserInterface {
 		
 	}
 	
+	/**
+	 * Method to display many choice to user
+	 * @return selected choice of the user
+	 */
 	public int displayChoice(){
 		Scanner choice = new Scanner(System.in);
 		int choiceNumber;
@@ -24,6 +28,10 @@ public class UserInterface {
 		return choiceNumber;
 	}
 	
+	/**
+	 * Method to get the user entries line
+	 * @return this line
+	 */
 	public String getLine(){
 		String inputStr = "";
 		Scanner sc = new Scanner(System.in);
@@ -33,14 +41,14 @@ public class UserInterface {
 		} catch (NoSuchElementException e) {
 			e.printStackTrace();
 		}
-		finally {
-			sc.close();
-		}
 		System.out.println("Vous avez saisis : "+inputStr);
 		return inputStr;
 	}
 	
-	
+	/**
+	 * Method do display a message
+	 * @param text
+	 */
 	public void display(String text){
 		System.out.println(text);
 	}

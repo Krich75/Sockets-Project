@@ -37,14 +37,15 @@ public class MultiThreadServer implements Runnable {
 				out.println(tmp.length());
 			} 
 			else if (text.startsWith("val")) {
-				int value = 0;
-				for (int i = 0; i < tmp.length(); i++) {
-					if ((int) tmp.charAt(i) > 96 && (int) tmp.charAt(i) < 127) {
-						value += (int) tmp.charAt(i) - 96;
-					}
-				}
-				out.println(value);
-			} else {
+				out.println(value(tmp));
+			} 
+			else if (text.startsWith("voy")) {
+				out.println(voyelle(tmp));
+			}
+			else if (text.startsWith("con")) {
+				out.println(tmp.length()-voyelle(tmp));
+			}
+			else{
 				out.println("Nothing");
 			}
 			out.flush();
@@ -53,6 +54,39 @@ public class MultiThreadServer implements Runnable {
 		}
 		close();
 	}
+	
+	/**
+	 * Method to count number of wovel
+	 * @param tmp the current string 
+	 * @return the number wovel
+	 */
+	private int voyelle(String tmp){
+		char ch;
+		int nb=0;
+		for (int i = 0; i < tmp.length(); i++) {
+            ch = tmp.charAt(i);
+            if (isVoyelle(ch)) {
+                nb++;
+            }
+        }
+		return nb;
+	}
+	
+	/**
+	 * Method to count value of sentence
+	 * @param tmp
+	 * @return this value
+	 */
+	private int value(String tmp){
+		int value = 0;
+		for (int i = 0; i < tmp.length(); i++) {
+			if ((int) tmp.charAt(i) > 96 && (int) tmp.charAt(i) < 127) {
+				value += (int) tmp.charAt(i) - 96;
+			}
+		}
+		return value;
+	}
+	
 
 	/**
 	 * Method to initialise different element to communicate
@@ -67,6 +101,12 @@ public class MultiThreadServer implements Runnable {
 		}
 	}
 
+	public boolean isVoyelle(char ch) {
+        if (ch == 'a' || ch == 'e' || ch == 'i'|| ch == 'o'|| ch == 'u'  || ch == 'y') {
+            return true;
+        }
+        return false;
+    }
 	/**
 	 * Method to close all element to communicate
 	 */
