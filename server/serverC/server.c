@@ -74,7 +74,7 @@ void *threadClient(void *arg){
 	} while (buffer[MAX_SIZE-freeBuff-2] != '\r'
 		&& buffer[MAX_SIZE-freeBuff-1] != '\n');
 	
-	printf("Client sent : \"%s\"", buffer);
+	printf("Client sent : %s", buffer);
 	
 	if (strncmp(buffer, "voy", 3) == 0){
 		result = count(buffer+4, MAX_SIZE-freeBuff-2, isVoyelle);

@@ -9,6 +9,8 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import javax.net.ssl.SSLSocketFactory;
+
 public class Communication {
 		
 	private Socket socket;
@@ -31,6 +33,28 @@ public class Communication {
 	public void initSocket(InetAddress hostName, int port){
 		try {
 			socket = new Socket(hostName, port);
+			init();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Methode to initialise Socket and element to communicate
+	 * @param hostName
+	 * @param port
+	 */
+	public void initSocketSSL(InetAddress hostName, int port){
+		try {
+			socket = SSLSocketFactory.getDefault().createSocket(hostName, port);
+			init();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void init(){
+		try {
 			output = new PrintStream(socket.getOutputStream());
 			reader = new InputStreamReader(socket.getInputStream());
 			ret = new BufferedReader(reader);
@@ -46,9 +70,11 @@ public class Communication {
 	 * @throws IOException
 	 */
 	public void close() throws IOException{
-		this.output.close();
-		this.reader.close();
-		this.socket.close();
+		if(output != null && reader != null){
+			this.output.close();
+			this.reader.close();
+			this.socket.close();
+		}
 	}
 	
 	/**

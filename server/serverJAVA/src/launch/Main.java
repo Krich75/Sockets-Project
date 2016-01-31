@@ -1,27 +1,34 @@
 package launch;
 
-import java.net.ServerSocket;
-import java.net.Socket;
-
-import server.MultiThreadServer;
+import handler.LetterCounterHandler;
+import impl.SSLServer;
+import impl.UnsecuredServer;
 
 public class Main {
 	
-	public static final int portServerJava = 7777;
-
 	public static void main(String args[]) throws Exception {
 		
-		int numberClient =0;
+		UnsecuredServer server = new UnsecuredServer(CONFIG.portServer);
+		SSLServer sslServer = new SSLServer(CONFIG.portServerSSL);
 		
-		ServerSocket serverSocket = new ServerSocket(6666);
+		Runtime.getRuntime().addShutdownHook(new Thread()
+        {
+            @Override
+            public void run()
+            {
+            	System.out.println("Stopping servers..");
+            	server.stopListening();
+            	sslServer.stopListening();
+            	System.out.print("Waiting for all connections to end..");
+                server.awaitTermination();
+                sslServer.awaitTermination();
+                System.out.println(" done.");
+            }
+        });
 		
-		System.out.println("Listening on port :"+ portServerJava);
-		
-		while (true) {
-			numberClient++;
-			Socket socket = serverSocket.accept();
-			System.out.println("New client connected : client"+numberClient);
-			new Thread(new MultiThreadServer(socket)).start();
-		}
+		server.startListening(new LetterCounterHandler(), 20);
+		sslServer.startListening(new LetterCounterHandler(), 20);
+		System.out.println("Unsecured server listening on port :"+ CONFIG.portServerJava);
+		System.out.println("Secured server listening on port :"+ CONFIG.portServerSSL);
 	}
 }

@@ -15,7 +15,7 @@ public class UserInterface {
 	 */
 	public int displayChoice(){
 		Scanner choice = new Scanner(System.in);
-		int choiceNumber;
+		int choiceNumber = -1;
 		do{
 			System.out.println("Veuillez choisir une option (saisissez 1-2-3-4, ou 0 pour quitter) :");
 			System.out.println("-- 1) Compter le nombre de voyelles.");
@@ -24,7 +24,7 @@ public class UserInterface {
 			System.out.println("-- 4) Donner la valeur d'une phrase.");
 			choiceNumber = choice.nextInt();
 			System.out.println(choiceNumber);
-		}while(choiceNumber!=0 && choiceNumber!=1 && choiceNumber!=2 && choiceNumber!=3 && choiceNumber!=4);
+		}while(choiceNumber < 0 || choiceNumber > 6);
 		return choiceNumber;
 	}
 	

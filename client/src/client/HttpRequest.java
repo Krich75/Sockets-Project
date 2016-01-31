@@ -10,8 +10,6 @@ import launch.CONFIG;
 
 public class HttpRequest {
 
-	public static final int portServerPhp = 80;
-
 	private Communication communication;
 
 	/**
@@ -22,7 +20,7 @@ public class HttpRequest {
 	public HttpRequest(Communication communication) {
 		this.communication = communication;
 		try {
-			communication.initSocket(InetAddress.getByName(CONFIG.hostName), portServerPhp);
+			communication.initSocket(InetAddress.getByName(CONFIG.hostName), CONFIG.portServerPhp);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}

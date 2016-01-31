@@ -1,4 +1,4 @@
-package server;
+package handler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class MultiThreadServer implements Runnable {
 	 * Constructor to MultiThreadServer
 	 * 
 	 * @param socket
-	 *            : the current socket use for this Thread
+	 * socket: the current socket use for this Thread
 	 */
 	public MultiThreadServer(Socket socket) {
 		this.socket = socket;
@@ -65,9 +65,7 @@ public class MultiThreadServer implements Runnable {
 		int nb=0;
 		for (int i = 0; i < tmp.length(); i++) {
             ch = tmp.charAt(i);
-            if (isVoyelle(ch)) {
-                nb++;
-            }
+            if (isVoyelle(ch)) nb++;
         }
 		return nb;
 	}
