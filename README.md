@@ -44,12 +44,12 @@ et au calcul de la valeur d'une phrase. Cependant, le client utilise bien GET po
 .
 ├── client			-> Contient le code source du client java.
 ├── lib				-> Contient le code source des bibliothèques que nous avons développé pour ce projet.
-│   ├── libServerJava
-│   └── libSSLHelpersJava
+│	├── libServerJava
+│	└── libSSLHelpersJava
 └── server			-> Contient les codes source des différents serveurs.
-    ├── serverC
-    ├── serverJAVA		-> Assure la fonction de serveur non sécurisé et de server SSL (voir sources)
-    └── serverPHP
+	├── serverC
+	├── serverJAVA		-> Assure la fonction de serveur non sécurisé et de server SSL (voir sources)
+	└── serverPHP
 
 
 	Chaque projet nécessitant une compilation possède sont propre makefile et un makefile global permet de compiler tous les projets.
