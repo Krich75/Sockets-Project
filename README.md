@@ -76,17 +76,16 @@ Notez que les projets client, libServerJava, libSSLHelpersJava et serverJAVA son
 
 	- server c :	$ ./server/serverC/server [port]
 
-### Il est possible que vous n'ayez la permission de lancer l'éxecutable c, dans ce cas lancez :
+### Permission:
 
 	$ chmod +x server/serverC/serverC
 
 
 ### Cas particulier pour le serveur PHP :
 
-	Copiez le fichier index.php sur un server HTTP,
-	Ou lancez :
+Copiez le fichier index.php sur un server HTTP,	Ou lancez :
 	
-		$ php -S 127.0.0.1:8888 -t server/serverPHP 
+	$ php -S 127.0.0.1:8888 -t server/serverPHP 
 
 
 ###  Valeurs par défaut (c=client, s=serveur):
