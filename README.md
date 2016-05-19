@@ -43,13 +43,21 @@ et au calcul de la valeur d'une phrase. Cependant, le client utilise bien GET po
 ## Contenu de l'archive :
 .
 ├── client			-> Contient le code source du client java.
+
 ├── lib				-> Contient le code source des bibliothèques que nous avons développé pour ce projet.
+
 │	├── libServerJava
+
 │	└── libSSLHelpersJava
+
 └── server			-> Contient les codes source des différents serveurs.
+
 	├── serverC
+	
 	├── serverJAVA		-> Assure la fonction de serveur non sécurisé et de server SSL (voir sources)
+	
 	└── serverPHP
+	
 
 
 	Chaque projet nécessitant une compilation possède sont propre makefile et un makefile global permet de compiler tous les projets.
@@ -101,8 +109,14 @@ comme tel dans l'IDE, mais il sera nécessaire de reconfigurer les dépendances 
 ## Fonctionalités associées aux différents serveurs :
 
 -- 1) Demander le nombre de voyelles d'une phrase. 	-> serveurC ou serveurJava
+
 -- 2) Demander le nombre de consonne d'une phrase.	-> serveurC ou serveurJava
+
 -- 3) Demander le nombre de lettre d'une phrase.	-> serveurPhp
+
 -- 4) Demander la valeur d'une phrase d'une phrase.	-> serveurPhp
+
 -- 5) Demander le nombre de voyelles d'une phrase (SSL).-> serveurJava
+
 -- 6) Demander le nombre de consones d'une phrase (SSL).-> serveurJava
+
