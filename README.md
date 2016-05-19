@@ -53,10 +53,10 @@ et au calcul de la valeur d'une phrase. Cependant, le client utilise bien GET po
 	     └── serverPHP
 		
 	
-	Chaque projet nécessitant une compilation possède sont propre makefile et un makefile global permet de compiler tous les projets.
 
-	Notez que les projets client, libServerJava, libSSLHelpersJava et serverJAVA sont des projets eclipse et peuvent être importé
-comme tel dans l'IDE, mais il sera nécessaire de reconfigurer les dépendances à :
+Chaque projet nécessitant une compilation possède sont propre makefile et un makefile global permet de compiler tous les projets.
+
+Notez que les projets client, libServerJava, libSSLHelpersJava et serverJAVA sont des projets eclipse et peuvent être importé comme tel dans l'IDE, mais il sera nécessaire de reconfigurer les dépendances à :
 
 
 	- libServerJava et libSSLHelpersJava pour le projet serverJAVA
@@ -101,15 +101,15 @@ comme tel dans l'IDE, mais il sera nécessaire de reconfigurer les dépendances 
 
 ## Fonctionalités associées aux différents serveurs :
 
--- 1) Demander le nombre de voyelles d'une phrase. 	-> serveurC ou serveurJava
+- 1) Demander le nombre de voyelles d'une phrase. 	-> serveurC ou serveurJava
 
--- 2) Demander le nombre de consonne d'une phrase.	-> serveurC ou serveurJava
+- 2) Demander le nombre de consonne d'une phrase.	-> serveurC ou serveurJava
 
--- 3) Demander le nombre de lettre d'une phrase.	-> serveurPhp
+- 3) Demander le nombre de lettre d'une phrase.	-> serveurPhp
 
--- 4) Demander la valeur d'une phrase d'une phrase.	-> serveurPhp
+- 4) Demander la valeur d'une phrase d'une phrase.	-> serveurPhp
 
--- 5) Demander le nombre de voyelles d'une phrase (SSL).-> serveurJava
+- 5) Demander le nombre de voyelles d'une phrase (SSL).-> serveurJava
 
--- 6) Demander le nombre de consones d'une phrase (SSL).-> serveurJava
+- 6) Demander le nombre de consones d'une phrase (SSL).-> serveurJava
 
